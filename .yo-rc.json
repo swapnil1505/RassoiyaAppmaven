@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.rasoiyya",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "6.9.0",
+    "applicationType": "microservice",
+    "baseName": "RasoiyyaApp",
+    "packageName": "com.rasoiyya",
+    "packageFolder": "com/rasoiyya",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "YWI1NTEyMTIwOTk4YzcxMTg4N2NiYWFmMjNmNmUwNGY3ZjcxMzg2YjRlMDNjNTNhZTNjN2JhZjlhNWU2MDUxOTFmMjJkNTdkMjFjMTFiZTMyOWQwMTMxOTYxOWEwNzNiZGZkM2JjOTEwNTY1YTI4ZGQwNTY0MzYzNjFjYjE3Yzg=",
+    "embeddableLaunchScript": false,
+    "creationTimestamp": 1590586911931,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "clientPackageManager": "npm",
+    "nativeLanguage": "en",
+    "languages": ["en"],
+    "blueprints": [],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
