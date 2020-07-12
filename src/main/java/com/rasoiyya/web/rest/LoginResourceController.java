@@ -27,6 +27,7 @@ public class LoginResourceController {
 			log.info("Uer Name :- "+ userLoginRequest.getUser_name());
 			log.info("Password :- "+ userLoginRequest.getPassword());
 			loginService.getLogin(userLoginRequest);
+			log.info("Login Sucessfully");
 			return "Login Sucessfully";
 		} catch (Exception e) {
 			e.printStackTrace();
