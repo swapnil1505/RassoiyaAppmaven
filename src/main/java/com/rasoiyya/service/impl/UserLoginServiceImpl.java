@@ -17,7 +17,7 @@ public class UserLoginServiceImpl implements UserLoginService {
 	@Override
 	public void getLogin(UserLoginRequest userLoginRequest) {
 		UserLogin userLogin = new UserLogin();
-		userLogin.setUserName(userLoginRequest.getUser_name());
+		userLogin.setUsername(userLoginRequest.getUser_name());
 		userLogin.setPassword(userLoginRequest.getPassword());
 		userLoginRepository.save(userLogin);
 	}
