@@ -24,7 +24,7 @@ public class AdminRegistrationRequest implements Serializable {
 	private String govt_id_no;
 	private String request_time;
 	private String requestuid;
-	
+	private String email_id;
 	private List<AddressRequest> addressList;
 	
 	
@@ -106,13 +106,21 @@ public class AdminRegistrationRequest implements Serializable {
 	public void setRequestuid(String requestuid) {
 		this.requestuid = requestuid;
 	}
+	
+	public String getEmail_id() {
+		return email_id;
+	}
+	public void setEmail_id(String email_id) {
+		this.email_id = email_id;
+	}
 	@Override
 	public String toString() {
 		return "AdminRegistrationRequest [user_name=" + user_name + ", password=" + password + ", first_name="
 				+ first_name + ", last_name=" + last_name + ", mobile_number=" + mobile_number + ", date_of_birth="
 				+ date_of_birth + ", gender=" + gender + ", is_kyc_verified=" + is_kyc_verified + ", govt_id_type="
 				+ govt_id_type + ", govt_id_no=" + govt_id_no + ", request_time=" + request_time + ", requestuid="
-				+ requestuid + ", addressList=" + addressList + "]";
-	}	
+				+ requestuid + ", email_id=" + email_id + ", addressList=" + addressList + "]";
+	}
+	
 
 }

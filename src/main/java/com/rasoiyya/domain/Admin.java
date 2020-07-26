@@ -3,7 +3,6 @@ package com.rasoiyya.domain;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -16,6 +15,7 @@ public class Admin implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="admin_id")
 	private int adminId;
 
@@ -41,13 +41,6 @@ public class Admin implements Serializable {
 	@JoinColumn(name="person_id_fk")
 	private Person person;
 
-	//bi-directional many-to-one association to Document
-	@OneToMany(mappedBy="admin")
-	private List<Document> documents;
-
-	//bi-directional many-to-one association to Feedback
-	@OneToMany(mappedBy="admin")
-	private List<Feedback> feedbacks;
 
 	public Admin() {
 	}
@@ -106,50 +99,6 @@ public class Admin implements Serializable {
 
 	public void setPerson(Person person) {
 		this.person = person;
-	}
-
-	public List<Document> getDocuments() {
-		return this.documents;
-	}
-
-	public void setDocuments(List<Document> documents) {
-		this.documents = documents;
-	}
-
-	public Document addDocument(Document document) {
-		getDocuments().add(document);
-		document.setAdmin(this);
-
-		return document;
-	}
-
-	public Document removeDocument(Document document) {
-		getDocuments().remove(document);
-		document.setAdmin(null);
-
-		return document;
-	}
-
-	public List<Feedback> getFeedbacks() {
-		return this.feedbacks;
-	}
-
-	public void setFeedbacks(List<Feedback> feedbacks) {
-		this.feedbacks = feedbacks;
-	}
-
-	public Feedback addFeedback(Feedback feedback) {
-		getFeedbacks().add(feedback);
-		feedback.setAdmin(this);
-
-		return feedback;
-	}
-
-	public Feedback removeFeedback(Feedback feedback) {
-		getFeedbacks().remove(feedback);
-		feedback.setAdmin(null);
-
-		return feedback;
 	}
 
 }

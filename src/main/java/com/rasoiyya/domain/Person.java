@@ -16,6 +16,7 @@ public class Person implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="person_id")
 	private int personId;
 
@@ -50,7 +51,7 @@ public class Person implements Serializable {
 	@Column(name="modified_by")
 	private String modifiedBy;
 
-	//bi-directional many-to-one association to Admin
+	/*//bi-directional many-to-one association to Admin
 	@OneToMany(mappedBy="person")
 	private List<Admin> admins;
 
@@ -60,7 +61,7 @@ public class Person implements Serializable {
 
 	//bi-directional many-to-one association to Customer
 	@OneToMany(mappedBy="person")
-	private List<Customer> customers;
+	private List<Customer> customers;*/
 
 	//bi-directional many-to-one association to UserLogin
 	@ManyToOne
@@ -166,15 +167,15 @@ public class Person implements Serializable {
 		this.modifiedBy = modifiedBy;
 	}
 
-	public List<Admin> getAdmins() {
+	/*public List<Admin> getAdmins() {
 		return this.admins;
 	}
 
 	public void setAdmins(List<Admin> admins) {
 		this.admins = admins;
-	}
+	}*/
 
-	public Admin addAdmin(Admin admin) {
+	/*public Admin addAdmin(Admin admin) {
 		getAdmins().add(admin);
 		admin.setPerson(this);
 
@@ -194,9 +195,9 @@ public class Person implements Serializable {
 
 	public void setCooks(List<Cook> cooks) {
 		this.cooks = cooks;
-	}
+	}*/
 
-	public Cook addCook(Cook cook) {
+	/*public Cook addCook(Cook cook) {
 		getCooks().add(cook);
 		cook.setPerson(this);
 
@@ -208,17 +209,17 @@ public class Person implements Serializable {
 		cook.setPerson(null);
 
 		return cook;
-	}
+	}*/
 
-	public List<Customer> getCustomers() {
+	/*public List<Customer> getCustomers() {
 		return this.customers;
 	}
 
 	public void setCustomers(List<Customer> customers) {
 		this.customers = customers;
-	}
+	}*/
 
-	public Customer addCustomer(Customer customer) {
+	/*public Customer addCustomer(Customer customer) {
 		getCustomers().add(customer);
 		customer.setPerson(this);
 
@@ -230,7 +231,7 @@ public class Person implements Serializable {
 		customer.setPerson(null);
 
 		return customer;
-	}
+	}*/
 
 	public UserLogin getUserLogin() {
 		return this.userLogin;

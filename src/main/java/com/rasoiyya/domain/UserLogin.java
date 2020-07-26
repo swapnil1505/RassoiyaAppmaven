@@ -45,7 +45,7 @@ public class UserLogin implements Serializable {
 
 	private String username;
 
-	//bi-directional many-to-one association to ForgetPasswordHistory
+	/*//bi-directional many-to-one association to ForgetPasswordHistory
 	@OneToMany(mappedBy="userLogin")
 	private List<ForgetPasswordHistory> forgetPasswordHistories;
 
@@ -68,7 +68,7 @@ public class UserLogin implements Serializable {
 	//bi-directional many-to-one association to ReferralCodeLog
 	@OneToMany(mappedBy="userLogin2")
 	private List<ReferralCodeLog> referralCodeLogs2;
-
+*/
 	//bi-directional many-to-one association to Role
 	@ManyToOne
 	@JoinColumn(name="user_role_id")
@@ -149,22 +149,22 @@ public class UserLogin implements Serializable {
 		this.username = username;
 	}
 
-	public List<ForgetPasswordHistory> getForgetPasswordHistories() {
+	/*public List<ForgetPasswordHistory> getForgetPasswordHistories() {
 		return this.forgetPasswordHistories;
 	}
 
 	public void setForgetPasswordHistories(List<ForgetPasswordHistory> forgetPasswordHistories) {
 		this.forgetPasswordHistories = forgetPasswordHistories;
-	}
+	}*/
 
-	public ForgetPasswordHistory addForgetPasswordHistory(ForgetPasswordHistory forgetPasswordHistory) {
+	/*public ForgetPasswordHistory addForgetPasswordHistory(ForgetPasswordHistory forgetPasswordHistory) {
 		getForgetPasswordHistories().add(forgetPasswordHistory);
 		forgetPasswordHistory.setUserLogin(this);
 
 		return forgetPasswordHistory;
-	}
+	}*/
 
-	public ForgetPasswordHistory removeForgetPasswordHistory(ForgetPasswordHistory forgetPasswordHistory) {
+	/*public ForgetPasswordHistory removeForgetPasswordHistory(ForgetPasswordHistory forgetPasswordHistory) {
 		getForgetPasswordHistories().remove(forgetPasswordHistory);
 		forgetPasswordHistory.setUserLogin(null);
 
@@ -177,9 +177,9 @@ public class UserLogin implements Serializable {
 
 	public void setNotifications(List<Notification> notifications) {
 		this.notifications = notifications;
-	}
+	}*/
 
-	public Notification addNotification(Notification notification) {
+	/*public Notification addNotification(Notification notification) {
 		getNotifications().add(notification);
 		notification.setUserLogin(this);
 
@@ -191,24 +191,24 @@ public class UserLogin implements Serializable {
 		notification.setUserLogin(null);
 
 		return notification;
-	}
+	}*/
 
-	public List<Person> getPersons() {
+	/*public List<Person> getPersons() {
 		return this.persons;
 	}
 
 	public void setPersons(List<Person> persons) {
 		this.persons = persons;
-	}
+	}*/
 
-	public Person addPerson(Person person) {
+	/*public Person addPerson(Person person) {
 		getPersons().add(person);
 		person.setUserLogin(this);
 
 		return person;
-	}
+	}*/
 
-	public Person removePerson(Person person) {
+	/*public Person removePerson(Person person) {
 		getPersons().remove(person);
 		person.setUserLogin(null);
 
@@ -221,9 +221,9 @@ public class UserLogin implements Serializable {
 
 	public void setReferralCodes(List<ReferralCode> referralCodes) {
 		this.referralCodes = referralCodes;
-	}
+	}*/
 
-	public ReferralCode addReferralCode(ReferralCode referralCode) {
+	/*public ReferralCode addReferralCode(ReferralCode referralCode) {
 		getReferralCodes().add(referralCode);
 		referralCode.setUserLogin(this);
 
@@ -244,8 +244,8 @@ public class UserLogin implements Serializable {
 	public void setReferralCodeLogs1(List<ReferralCodeLog> referralCodeLogs1) {
 		this.referralCodeLogs1 = referralCodeLogs1;
 	}
-
-	public ReferralCodeLog addReferralCodeLogs1(ReferralCodeLog referralCodeLogs1) {
+*/
+	/*public ReferralCodeLog addReferralCodeLogs1(ReferralCodeLog referralCodeLogs1) {
 		getReferralCodeLogs1().add(referralCodeLogs1);
 		referralCodeLogs1.setUserLogin1(this);
 
@@ -257,17 +257,17 @@ public class UserLogin implements Serializable {
 		referralCodeLogs1.setUserLogin1(null);
 
 		return referralCodeLogs1;
-	}
+	}*/
 
-	public List<ReferralCodeLog> getReferralCodeLogs2() {
+	/*public List<ReferralCodeLog> getReferralCodeLogs2() {
 		return this.referralCodeLogs2;
 	}
 
 	public void setReferralCodeLogs2(List<ReferralCodeLog> referralCodeLogs2) {
 		this.referralCodeLogs2 = referralCodeLogs2;
-	}
+	}*/
 
-	public ReferralCodeLog addReferralCodeLogs2(ReferralCodeLog referralCodeLogs2) {
+	/*public ReferralCodeLog addReferralCodeLogs2(ReferralCodeLog referralCodeLogs2) {
 		getReferralCodeLogs2().add(referralCodeLogs2);
 		referralCodeLogs2.setUserLogin2(this);
 
@@ -279,7 +279,7 @@ public class UserLogin implements Serializable {
 		referralCodeLogs2.setUserLogin2(null);
 
 		return referralCodeLogs2;
-	}
+	}*/
 
 	public Role getRole() {
 		return this.role;

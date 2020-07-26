@@ -17,6 +17,7 @@ public class AddressRequest implements Serializable {
 	private String pin_code;
 	private String address_type;
 	private String geo_location;
+	private String is_current_address;
 	
 	
 	public String getAddress_line1() {
@@ -67,11 +68,19 @@ public class AddressRequest implements Serializable {
 	public void setGeo_location(String geo_location) {
 		this.geo_location = geo_location;
 	}
+	
+		
+	public String getIs_current_address() {
+		return is_current_address;
+	}
+	public void setIs_current_address(String is_current_address) {
+		this.is_current_address = is_current_address;
+	}
 	@Override
 	public String toString() {
 		return "AddressRequest [address_line1=" + address_line1 + ", address_line2=" + address_line2 + ", district="
 				+ district + ", state=" + state + ", city=" + city + ", pin_code=" + pin_code + ", address_type="
-				+ address_type + ", geo_location=" + geo_location + "]";
+				+ address_type + ", geo_location=" + geo_location + ", is_current_address=" + is_current_address + "]";
 	}
 	
 }

@@ -16,6 +16,7 @@ public class Address implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="address_id")
 	private int addressId;
 
@@ -59,9 +60,9 @@ public class Address implements Serializable {
 	@JoinColumn(name="state_id")
 	private State state;
 
-	//bi-directional many-to-one association to BookingDetail
+	/*//bi-directional many-to-one association to BookingDetail
 	@OneToMany(mappedBy="address")
-	private List<BookingDetail> bookingDetails;
+	private List<BookingDetail> bookingDetails;*/
 
 	public Address() {
 	}
@@ -170,15 +171,15 @@ public class Address implements Serializable {
 		this.state = state;
 	}
 
-	public List<BookingDetail> getBookingDetails() {
+	/*public List<BookingDetail> getBookingDetails() {
 		return this.bookingDetails;
 	}
 
 	public void setBookingDetails(List<BookingDetail> bookingDetails) {
 		this.bookingDetails = bookingDetails;
-	}
+	}*/
 
-	public BookingDetail addBookingDetail(BookingDetail bookingDetail) {
+	/*public BookingDetail addBookingDetail(BookingDetail bookingDetail) {
 		getBookingDetails().add(bookingDetail);
 		bookingDetail.setAddress(this);
 
@@ -190,6 +191,6 @@ public class Address implements Serializable {
 		bookingDetail.setAddress(null);
 
 		return bookingDetail;
-	}
+	}*/
 
 }
