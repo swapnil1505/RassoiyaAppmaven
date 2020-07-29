@@ -28,6 +28,9 @@ public class Admin implements Serializable {
 
 	@Column(name="is_kyc_verified")
 	private String isKycVerified;
+	
+	@Column(name="status")
+	private String status;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="last_updated_date")
@@ -44,6 +47,17 @@ public class Admin implements Serializable {
 
 	public Admin() {
 	}
+
+	
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 
 	public int getAdminId() {
 		return this.adminId;

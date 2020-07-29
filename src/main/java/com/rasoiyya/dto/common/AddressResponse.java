@@ -2,13 +2,14 @@ package com.rasoiyya.dto.common;
 
 import java.io.Serializable;
 
-public class AddressRequest implements Serializable {
+public class AddressResponse implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	public AddressRequest() {
+	public AddressResponse() {
 		
 	}
 
+	private String address_id;
 	private String address_line1;
 	private String address_line2;
 	private String district;
@@ -18,7 +19,51 @@ public class AddressRequest implements Serializable {
 	private String address_type;
 	private String geo_location;
 	private String is_current_address;
+	private String created_date;
+	private String modified_date;
+	private String created_by;
+	private String modified_by;
 	
+	
+	public String getCreated_date() {
+		return created_date;
+	}
+
+	public void setCreated_date(String created_date) {
+		this.created_date = created_date;
+	}
+
+	public String getModified_date() {
+		return modified_date;
+	}
+
+	public void setModified_date(String modified_date) {
+		this.modified_date = modified_date;
+	}
+
+	public String getCreated_by() {
+		return created_by;
+	}
+
+	public void setCreated_by(String created_by) {
+		this.created_by = created_by;
+	}
+
+	public String getModified_by() {
+		return modified_by;
+	}
+
+	public void setModified_by(String modified_by) {
+		this.modified_by = modified_by;
+	}
+
+	public String getAddress_id() {
+		return address_id;
+	}
+	
+	public void setAddress_id(String address_id) {
+		this.address_id = address_id;
+	}
 	public String getAddress_line1() {
 		return address_line1;
 	}
@@ -67,8 +112,6 @@ public class AddressRequest implements Serializable {
 	public void setGeo_location(String geo_location) {
 		this.geo_location = geo_location;
 	}
-	
-		
 	public String getIs_current_address() {
 		return is_current_address;
 	}
@@ -77,9 +120,9 @@ public class AddressRequest implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "AddressRequest [address_line1=" + address_line1 + ", address_line2=" + address_line2 + ", district="
-				+ district + ", state=" + state + ", city=" + city + ", pin_code=" + pin_code + ", address_type="
-				+ address_type + ", geo_location=" + geo_location + ", is_current_address=" + is_current_address + "]";
+		return "AddressResponse [address_id=" + address_id + ", address_line1=" + address_line1 + ", address_line2="
+				+ address_line2 + ", district=" + district + ", state=" + state + ", city=" + city + ", pin_code="
+				+ pin_code + ", address_type=" + address_type + ", geo_location=" + geo_location
+				+ ", is_current_address=" + is_current_address + "]";
 	}
-	
 }

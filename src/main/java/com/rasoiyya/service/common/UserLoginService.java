@@ -1,4 +1,4 @@
-package com.rasoiyya.service;
+package com.rasoiyya.service.common;
 
 import com.rasoiyya.dto.UserLoginRequest;
 

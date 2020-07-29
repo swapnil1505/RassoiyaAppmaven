@@ -25,6 +25,7 @@ public class AdminRegistrationRequest implements Serializable {
 	private String request_time;
 	private String requestuid;
 	private String email_id;
+	private String created_by;
 	private List<AddressRequest> addressList;
 	
 	
@@ -112,6 +113,12 @@ public class AdminRegistrationRequest implements Serializable {
 	}
 	public void setEmail_id(String email_id) {
 		this.email_id = email_id;
+	}
+	public String getCreated_by() {
+		return created_by;
+	}
+	public void setCreated_by(String created_by) {
+		this.created_by = created_by;
 	}
 	@Override
 	public String toString() {

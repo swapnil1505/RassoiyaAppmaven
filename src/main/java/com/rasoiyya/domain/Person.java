@@ -3,7 +3,6 @@ package com.rasoiyya.domain;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -30,7 +29,13 @@ public class Person implements Serializable {
 	private String email;
 
 	private String firstname;
-
+	
+	@Column(name="date_of_birth")
+	private String dateOfBirth;
+	
+	@Column(name="gender")
+	private String gender;
+	
 	@Column(name="govt_id_no")
 	private String govtIdNo;
 
@@ -51,25 +56,32 @@ public class Person implements Serializable {
 	@Column(name="modified_by")
 	private String modifiedBy;
 
-	/*//bi-directional many-to-one association to Admin
-	@OneToMany(mappedBy="person")
-	private List<Admin> admins;
-
-	//bi-directional many-to-one association to Cook
-	@OneToMany(mappedBy="person")
-	private List<Cook> cooks;
-
-	//bi-directional many-to-one association to Customer
-	@OneToMany(mappedBy="person")
-	private List<Customer> customers;*/
-
-	//bi-directional many-to-one association to UserLogin
 	@ManyToOne
 	@JoinColumn(name="user_login_id")
 	private UserLogin userLogin;
 
 	public Person() {
 	}
+
+	
+	
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
 
 	public int getPersonId() {
 		return this.personId;
@@ -94,6 +106,8 @@ public class Person implements Serializable {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+	
+	
 
 	public String getEmail() {
 		return this.email;
@@ -166,72 +180,6 @@ public class Person implements Serializable {
 	public void setModifiedBy(String modifiedBy) {
 		this.modifiedBy = modifiedBy;
 	}
-
-	/*public List<Admin> getAdmins() {
-		return this.admins;
-	}
-
-	public void setAdmins(List<Admin> admins) {
-		this.admins = admins;
-	}*/
-
-	/*public Admin addAdmin(Admin admin) {
-		getAdmins().add(admin);
-		admin.setPerson(this);
-
-		return admin;
-	}
-
-	public Admin removeAdmin(Admin admin) {
-		getAdmins().remove(admin);
-		admin.setPerson(null);
-
-		return admin;
-	}
-
-	public List<Cook> getCooks() {
-		return this.cooks;
-	}
-
-	public void setCooks(List<Cook> cooks) {
-		this.cooks = cooks;
-	}*/
-
-	/*public Cook addCook(Cook cook) {
-		getCooks().add(cook);
-		cook.setPerson(this);
-
-		return cook;
-	}
-
-	public Cook removeCook(Cook cook) {
-		getCooks().remove(cook);
-		cook.setPerson(null);
-
-		return cook;
-	}*/
-
-	/*public List<Customer> getCustomers() {
-		return this.customers;
-	}
-
-	public void setCustomers(List<Customer> customers) {
-		this.customers = customers;
-	}*/
-
-	/*public Customer addCustomer(Customer customer) {
-		getCustomers().add(customer);
-		customer.setPerson(this);
-
-		return customer;
-	}
-
-	public Customer removeCustomer(Customer customer) {
-		getCustomers().remove(customer);
-		customer.setPerson(null);
-
-		return customer;
-	}*/
 
 	public UserLogin getUserLogin() {
 		return this.userLogin;

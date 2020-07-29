@@ -1,4 +1,4 @@
-package com.rasoiyya.web.rest;
+package com.rasoiyya.web.rest.common;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rasoiyya.dto.UserLoginRequest;
-import com.rasoiyya.service.UserLoginService;
+import com.rasoiyya.service.common.UserLoginService;
 
 @RestController
 @RequestMapping("/login/v1")

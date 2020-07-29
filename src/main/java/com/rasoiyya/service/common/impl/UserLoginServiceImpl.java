@@ -1,12 +1,12 @@
-package com.rasoiyya.service.impl;
+package com.rasoiyya.service.common.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rasoiyya.domain.UserLogin;
 import com.rasoiyya.dto.UserLoginRequest;
-import com.rasoiyya.repository.UserLoginRepository;
-import com.rasoiyya.service.UserLoginService;
+import com.rasoiyya.repository.common.UserLoginRepository;
+import com.rasoiyya.service.common.UserLoginService;
 
 @Service
 public class UserLoginServiceImpl implements UserLoginService {

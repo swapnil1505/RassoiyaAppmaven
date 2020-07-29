@@ -65,3 +65,15 @@ CREATE TABLE `rasoiyya_api_logs` (
 )
 ENGINE=InnoDB
 ;
+
+// Added By Naimish 29-07-2020
+
+ALTER TABLE `person` ADD COLUMN `date_of_birth` VARCHAR(50) NULL DEFAULT NULL AFTER `govt_id_no`;
+ALTER TABLE `person` ADD COLUMN `gender` VARCHAR(10) NULL DEFAULT NULL AFTER `date_of_birth`;
+ALTER TABLE `admin` ADD COLUMN `status` VARCHAR(10) NOT NULL AFTER `is_kyc_verified`;
+
+ALTER TABLE `user_login` ADD UNIQUE INDEX `USER_NAME_UNIQUE` (`username`);
+
+	
+
+

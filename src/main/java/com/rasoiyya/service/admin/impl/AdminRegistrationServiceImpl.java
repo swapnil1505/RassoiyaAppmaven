@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.rasoiyya.domain.Address;
@@ -22,12 +23,12 @@ import com.rasoiyya.domain.UserLogin;
 import com.rasoiyya.dto.admin.AdminRegistrationRequest;
 import com.rasoiyya.dto.common.AddressRequest;
 import com.rasoiyya.dto.common.RasoiyyaApiLogsDto;
-import com.rasoiyya.repository.AddressRepository;
-import com.rasoiyya.repository.PersonRepository;
-import com.rasoiyya.repository.RasoiyyaApiLogsRepositoy;
-import com.rasoiyya.repository.UserAddressRepository;
-import com.rasoiyya.repository.UserLoginRepository;
 import com.rasoiyya.repository.admin.AdminRepository;
+import com.rasoiyya.repository.common.AddressRepository;
+import com.rasoiyya.repository.common.PersonRepository;
+import com.rasoiyya.repository.common.RasoiyyaApiLogsRepositoy;
+import com.rasoiyya.repository.common.UserAddressRepository;
+import com.rasoiyya.repository.common.UserLoginRepository;
 import com.rasoiyya.service.admin.AdminRegistrationService;
 import com.rasoiyya.util.GlobalConstants;
 import com.rasoiyya.util.StringUtils;
@@ -86,12 +87,19 @@ public class AdminRegistrationServiceImpl implements AdminRegistrationService {
 						address.setState(state);
 					}
 					
-					address.setCreatedBy(adminRegistrationRequest.getUser_name());
+					if (StringUtils.isNotEmptyStr(adminRegistrationRequest.getCreated_by())) {
+						address.setCreatedBy(adminRegistrationRequest.getCreated_by());
+						address.setModifiedBy(adminRegistrationRequest.getCreated_by());
+					} else {
+						address.setCreatedBy(GlobalConstants.SUPER_ADMIN);
+						address.setModifiedBy(GlobalConstants.SUPER_ADMIN);
+						
+					}
+					
 					address.setCreatedDate(new Date());
 					address.setDistrict(addressRequest.getDistrict());
 					address.setGeoLocation(addressRequest.getGeo_location());
-					address.setLastUpdatedDate(new Date());
-					address.setModifiedBy(adminRegistrationRequest.getUser_name());
+					address.setLastUpdatedDate(new Date());				
 					address.setPincode(addressRequest.getPin_code());
 					
 					// Save the Address
@@ -101,8 +109,13 @@ public class AdminRegistrationServiceImpl implements AdminRegistrationService {
 					userAddress.setAddressId(address.getAddressId());
 					userAddress.setUserLoginId(userLogin.getUserId());
 					userAddress.setIsCurrentAddress(addressRequest.getIs_current_address());
-					userAddress.setModifiedBy(userLogin.getUsername());
-					userAddress.setCreatedBy(userLogin.getUsername());
+					userAddress.setModifiedBy(GlobalConstants.SUPER_ADMIN);
+					userAddress.setCreatedBy(GlobalConstants.SUPER_ADMIN);
+					if (StringUtils.isNotEmptyStr(adminRegistrationRequest.getCreated_by())) { 
+						userAddress.setModifiedBy(adminRegistrationRequest.getCreated_by());
+						userAddress.setCreatedBy(adminRegistrationRequest.getCreated_by());
+					}
+					
 					userAddress.setCreatedDate(new Date());
 					userAddress.setModifiedDate(new Date());
 					
@@ -114,10 +127,19 @@ public class AdminRegistrationServiceImpl implements AdminRegistrationService {
 			Admin admin = new Admin();
 			admin.setPerson(person);
 			admin.setCreatedBy(GlobalConstants.SUPER_ADMIN);
-			admin.setModifiedBy(userLogin.getUsername());
+			admin.setModifiedBy(GlobalConstants.SUPER_ADMIN);
+			if (StringUtils.isNotEmptyStr(adminRegistrationRequest.getCreated_by())) { 
+				admin.setModifiedBy(adminRegistrationRequest.getCreated_by());
+				admin.setCreatedBy(adminRegistrationRequest.getCreated_by());
+			}
 			admin.setCreatedDate(new Date());
 			admin.setLastUpdatedDate(new Date());
 			admin.setIsKycVerified(adminRegistrationRequest.getIs_kyc_verified());
+			if ("Y".equals(adminRegistrationRequest.getIs_kyc_verified())) {
+				admin.setStatus(GlobalConstants.ACTIVE_STATUS);
+			} else {
+				admin.setStatus(GlobalConstants.INACTIVE_STATUS);
+			}
 			
 			//Saving the Admin Data
 			adminRepository.save(admin);
@@ -143,8 +165,13 @@ public class AdminRegistrationServiceImpl implements AdminRegistrationService {
 		person.setGovtIdType(adminRegistrationRequest.getGovt_id_type());
 		person.setLastUpdatedDate(new Date());
 		person.setMobileNo(adminRegistrationRequest.getMobile_number());
-		person.setModifiedBy(adminRegistrationRequest.getUser_name());
-		
+		person.setModifiedBy(GlobalConstants.SUPER_ADMIN);
+		if (StringUtils.isNotEmptyStr(adminRegistrationRequest.getCreated_by())) { 
+			person.setModifiedBy(adminRegistrationRequest.getCreated_by());
+			person.setCreatedBy(adminRegistrationRequest.getCreated_by());
+		}
+		person.setDateOfBirth(adminRegistrationRequest.getDate_of_birth());
+		person.setGender(adminRegistrationRequest.getGender());
 		return person;
 	}
 
@@ -157,7 +184,11 @@ public class AdminRegistrationServiceImpl implements AdminRegistrationService {
 		userLogin.setCreatedDate(new Date());
 		userLogin.setIsActive("Y");
 		userLogin.setIsParent("N");
-		userLogin.setModifiedBy(adminRegistrationRequest.getUser_name());
+		userLogin.setModifiedBy(GlobalConstants.SUPER_ADMIN);
+		if (StringUtils.isNotEmptyStr(adminRegistrationRequest.getCreated_by())) { 
+			userLogin.setModifiedBy(adminRegistrationRequest.getCreated_by());
+			userLogin.setCreatedBy(adminRegistrationRequest.getCreated_by());
+		}
 		userLogin.setLastUpdatedDate(new Date());
 		Role role = new Role();
 		role.setRoleId(1);
