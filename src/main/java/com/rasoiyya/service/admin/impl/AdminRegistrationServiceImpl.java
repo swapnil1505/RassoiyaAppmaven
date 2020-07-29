@@ -182,7 +182,7 @@ public class AdminRegistrationServiceImpl implements AdminRegistrationService {
 		userLogin.setPassword(encodedPassword);
 		userLogin.setCreatedBy(GlobalConstants.SUPER_ADMIN);
 		userLogin.setCreatedDate(new Date());
-		userLogin.setIsActive("Y");
+		userLogin.setIsActive(true);
 		userLogin.setIsParent("N");
 		userLogin.setModifiedBy(GlobalConstants.SUPER_ADMIN);
 		if (StringUtils.isNotEmptyStr(adminRegistrationRequest.getCreated_by())) { 
@@ -192,7 +192,7 @@ public class AdminRegistrationServiceImpl implements AdminRegistrationService {
 		userLogin.setLastUpdatedDate(new Date());
 		Role role = new Role();
 		role.setRoleId(1);
-		userLogin.setRole(role);
+		userLogin.setRoles(role);
 				
 		return userLogin;
 	}
