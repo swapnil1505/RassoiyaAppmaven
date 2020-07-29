@@ -56,7 +56,14 @@ spring:
         prepStmtCacheSqlLimit: 2048
         useServerPrepStmts: true
   jpa:
-    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker
@@ -81,6 +88,8 @@ spring:
 
 server:
   port: 8081
+  servlet:
+    context-path: /rasoiyya
 
 # ===================================================================
 # JHipster specific properties

@@ -40,10 +40,6 @@ public class Role implements Serializable {
 	@Column(name="role_type")
 	private int roleType;
 
-	//bi-directional many-to-one association to UserLogin
-	@OneToMany(mappedBy="role")
-	private List<UserLogin> userLogins;
-
 	public Role() {
 	}
 
@@ -103,26 +99,6 @@ public class Role implements Serializable {
 		this.roleType = roleType;
 	}
 
-	public List<UserLogin> getUserLogins() {
-		return this.userLogins;
-	}
-
-	public void setUserLogins(List<UserLogin> userLogins) {
-		this.userLogins = userLogins;
-	}
-
-	public UserLogin addUserLogin(UserLogin userLogin) {
-		getUserLogins().add(userLogin);
-		userLogin.setRole(this);
-
-		return userLogin;
-	}
-
-	public UserLogin removeUserLogin(UserLogin userLogin) {
-		getUserLogins().remove(userLogin);
-		userLogin.setRole(null);
-
-		return userLogin;
-	}
+	
 
 }

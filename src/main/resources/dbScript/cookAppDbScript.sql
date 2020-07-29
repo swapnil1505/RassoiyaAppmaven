@@ -65,3 +65,21 @@ CREATE TABLE `rasoiyya_api_logs` (
 )
 ENGINE=InnoDB
 ;
+
+// Added By Manish - OAuth 2.0  
+create table if not exists  oauth_client_details (
+  client_id varchar(255) not null,
+  client_secret varchar(255) not null,
+  web_server_redirect_uri varchar(2048) default null,
+  scope varchar(255) default null,
+  access_token_validity int(11) default null,
+  refresh_token_validity int(11) default null,
+  resource_ids varchar(1024) default null,
+  authorized_grant_types varchar(1024) default null,
+  authorities varchar(1024) default null,
+  additional_information varchar(4096) default null,
+  autoapprove varchar(255) default null,
+  primary key (client_id)
+) engine=innodb ;
+
+INSERT INTO oauth_client_details (client_id, client_secret, web_server_redirect_uri, scope, access_token_validity, refresh_token_validity, resource_ids, authorized_grant_types, additional_information) VALUES ('mobile', '{bcrypt}$2a$10$gPhlXZfms0EpNHX0.HHptOhoFD1AoxSr/yUIdTqA8vtjeP4zi0DDu', 'http://localhost:8080/code', 'READ,WRITE', '3600', '10000', 'admin,cook,customer', 'authorization_code,password,refresh_token,implicit', '{}');

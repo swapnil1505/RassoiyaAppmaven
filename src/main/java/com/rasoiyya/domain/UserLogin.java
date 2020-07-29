@@ -15,7 +15,26 @@ import java.util.List;
 @NamedQuery(name="UserLogin.findAll", query="SELECT u FROM UserLogin u")
 public class UserLogin implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
+	public UserLogin(){
+	}
+	
+	public UserLogin(UserLogin user) {
+		this.userId = user.getUserId();
+		this.createdBy = user.getCreatedBy();
+		this.createdDate = user.getCreatedDate();
+		this.isActive = user.getIsActive();
+		this.isParent = user.getIsParent();
+		this.lastUpdatedDate = user.getLastUpdatedDate();
+		this.modifiedBy = user.getModifiedBy();
+		this.password = user.getPassword();
+		this.username = user.getUsername();
+		this.accountNonExpired = user.isAccountNonExpired();
+		this.credentialsNonExpired = user.isAccountNonExpired();
+		this.accountNonLocked = user.isAccountNonLocked();
+		this.role = user.getRoles();
+	}
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="user_id")
@@ -29,7 +48,7 @@ public class UserLogin implements Serializable {
 	private Date createdDate;
 
 	@Column(name="is_active")
-	private String isActive;
+	private boolean isActive;
 
 	@Column(name="is_parent")
 	private String isParent;
@@ -44,6 +63,44 @@ public class UserLogin implements Serializable {
 	private String password;
 
 	private String username;
+
+    @Column(name = "accountNonExpired")
+    private boolean accountNonExpired;
+    
+    @Column(name = "credentialsNonExpired")
+    private boolean credentialsNonExpired;
+    
+    @Column(name = "accountNonLocked")
+    private boolean accountNonLocked;
+    
+    @ManyToOne
+	@JoinColumn(name="user_role_id")
+	private Role role;
+    
+	public boolean isAccountNonExpired() {
+		return accountNonExpired;
+	}
+
+	public void setAccountNonExpired(boolean accountNonExpired) {
+		this.accountNonExpired = accountNonExpired;
+	}
+
+	public boolean isCredentialsNonExpired() {
+		return credentialsNonExpired;
+	}
+
+	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+		this.credentialsNonExpired = credentialsNonExpired;
+	}
+
+	public boolean isAccountNonLocked() {
+		return accountNonLocked;
+	}
+
+	public void setAccountNonLocked(boolean accountNonLocked) {
+		this.accountNonLocked = accountNonLocked;
+	}
+
 
 	/*//bi-directional many-to-one association to ForgetPasswordHistory
 	@OneToMany(mappedBy="userLogin")
@@ -70,12 +127,6 @@ public class UserLogin implements Serializable {
 	private List<ReferralCodeLog> referralCodeLogs2;
 */
 	//bi-directional many-to-one association to Role
-	@ManyToOne
-	@JoinColumn(name="user_role_id")
-	private Role role;
-
-	public UserLogin() {
-	}
 
 	public int getUserId() {
 		return this.userId;
@@ -101,11 +152,11 @@ public class UserLogin implements Serializable {
 		this.createdDate = createdDate;
 	}
 
-	public String getIsActive() {
+	public boolean getIsActive() {
 		return this.isActive;
 	}
 
-	public void setIsActive(String isActive) {
+	public void setIsActive(boolean isActive) {
 		this.isActive = isActive;
 	}
 
@@ -147,6 +198,14 @@ public class UserLogin implements Serializable {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public Role getRoles() {
+		return role;
+	}
+
+	public void setRoles(Role roles) {
+		this.role = roles;
 	}
 
 	/*public List<ForgetPasswordHistory> getForgetPasswordHistories() {
@@ -281,12 +340,6 @@ public class UserLogin implements Serializable {
 		return referralCodeLogs2;
 	}*/
 
-	public Role getRole() {
-		return this.role;
-	}
 
-	public void setRole(Role role) {
-		this.role = role;
-	}
 
 }
