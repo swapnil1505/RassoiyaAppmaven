@@ -10,6 +10,8 @@ public class AddressResponse implements Serializable {
 	}
 
 	private String address_id;
+	private String userAddressId;
+	private String userLoginId;
 	private String address_line1;
 	private String address_line2;
 	private String district;
@@ -124,5 +126,21 @@ public class AddressResponse implements Serializable {
 				+ address_line2 + ", district=" + district + ", state=" + state + ", city=" + city + ", pin_code="
 				+ pin_code + ", address_type=" + address_type + ", geo_location=" + geo_location
 				+ ", is_current_address=" + is_current_address + "]";
+	}
+
+	public String getUserLoginId() {
+		return userLoginId;
+	}
+
+	public void setUserLoginId(String userLoginId) {
+		this.userLoginId = userLoginId;
+	}
+
+	public String getUserAddressId() {
+		return userAddressId;
+	}
+
+	public void setUserAddressId(String userAddressId) {
+		this.userAddressId = userAddressId;
 	}
 }

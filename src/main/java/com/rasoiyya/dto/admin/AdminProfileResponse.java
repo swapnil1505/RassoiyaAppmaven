@@ -5,10 +5,11 @@ import java.util.List;
 
 import com.rasoiyya.dto.common.AddressResponse;
 
-public class ViewAdminProfileResponse  implements Serializable  {
+public class AdminProfileResponse  implements Serializable  {
 
 	private static final long serialVersionUID = 1L;
 
+	private Integer personId;
 	private String user_name;
 	private String password;
 	private String admin_id;
@@ -199,6 +200,12 @@ public class ViewAdminProfileResponse  implements Serializable  {
 				+ modified_by + ", status=" + status + ", status_code=" + status_code + ", status_message="
 				+ status_message + ", response_time=" + response_time + ", api_log_id=" + api_log_id + ", requestuid="
 				+ requestuid + ", addressList=" + addressList + "]";
+	}
+	public Integer getPersonId() {
+		return personId;
+	}
+	public void setPersonId(Integer personId) {
+		this.personId = personId;
 	}
 	
 	

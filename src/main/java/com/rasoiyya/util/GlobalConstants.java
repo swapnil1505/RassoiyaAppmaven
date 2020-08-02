@@ -16,7 +16,9 @@ public class GlobalConstants {
 	public static String SUPER_ADMIN = "SUPER_ADMIN";
 	public static String ADMIN_REGISTARATION = "AdminRegistration";
 	public static String ADMIN_VIEW_PROFILE = "AdminViewProfile";
-	
+	public static String UPDATE_PROFILE_SUCESSFULL="Update Profile Successful";
 	public static String ACTIVE_STATUS = "ACTIVE";
 	public static String INACTIVE_STATUS = "INACTIVE";
+	public static String UPDATE_PROFILE_UNSUCESSFULL="Error Occured During Updating Profile";
+	public static String ADMIN_UPDATE_PROFILE = "AdminUpdateProfile";
 }

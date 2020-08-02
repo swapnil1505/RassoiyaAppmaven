@@ -27,6 +27,7 @@ public class AdminRegistrationRequest implements Serializable {
 	private String email_id;
 	private String created_by;
 	private List<AddressRequest> addressList;
+	private Integer personId;
 	
 	
 	public String getUser_name() {
@@ -119,6 +120,14 @@ public class AdminRegistrationRequest implements Serializable {
 	}
 	public void setCreated_by(String created_by) {
 		this.created_by = created_by;
+	}
+	
+	
+	public Integer getPersonId() {
+		return getPersonId();
+	}
+	public void setPersonId(Integer personId) {
+		this.personId = personId;
 	}
 	@Override
 	public String toString() {
