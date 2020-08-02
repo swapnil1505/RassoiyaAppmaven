@@ -8,7 +8,9 @@ public class AddressRequest implements Serializable {
 	public AddressRequest() {
 		
 	}
-
+	private String userAddressId;
+	private String userLoginId;
+	private String address_id;
 	private String address_line1;
 	private String address_line2;
 	private String district;
@@ -75,11 +77,35 @@ public class AddressRequest implements Serializable {
 	public void setIs_current_address(String is_current_address) {
 		this.is_current_address = is_current_address;
 	}
+	
+	
+	public String getUserAddressId() {
+		return userAddressId;
+	}
+	public void setUserAddressId(String userAddressId) {
+		this.userAddressId = userAddressId;
+	}
+	public String getUserLoginId() {
+		return userLoginId;
+	}
+	public void setUserLoginId(String userLoginId) {
+		this.userLoginId = userLoginId;
+	}
+	public String getAddress_id() {
+		return address_id;
+	}
+	public void setAddress_id(String address_id) {
+		this.address_id = address_id;
+	}
+	
 	@Override
 	public String toString() {
-		return "AddressRequest [address_line1=" + address_line1 + ", address_line2=" + address_line2 + ", district="
+		return "AddressRequest [userAddressId=" + userAddressId + ", userLoginId=" + userLoginId + ", address_id="
+				+ address_id + ", address_line1=" + address_line1 + ", address_line2=" + address_line2 + ", district="
 				+ district + ", state=" + state + ", city=" + city + ", pin_code=" + pin_code + ", address_type="
 				+ address_type + ", geo_location=" + geo_location + ", is_current_address=" + is_current_address + "]";
 	}
+	
+	
 	
 }

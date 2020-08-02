@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.rasoiyya.domain.Address;
@@ -53,6 +54,9 @@ public class AdminRegistrationServiceImpl implements AdminRegistrationService {
 	
 	@Autowired
 	RasoiyyaApiLogsRepositoy rasoiyyaApiLogsRepositoy;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	Logger log = LoggerFactory.getLogger(AdminRegistrationServiceImpl.class);
 	
@@ -178,7 +182,8 @@ public class AdminRegistrationServiceImpl implements AdminRegistrationService {
 	private UserLogin getUserLogin(AdminRegistrationRequest adminRegistrationRequest) {
 		UserLogin userLogin = new UserLogin();
 		userLogin.setUsername(adminRegistrationRequest.getUser_name());
-		String encodedPassword = Base64.getEncoder().encodeToString(adminRegistrationRequest.getPassword().getBytes());
+//		String encodedPassword = Base64.getEncoder().encodeToString(adminRegistrationRequest.getPassword().getBytes());
+		String encodedPassword = passwordEncoder.encode(adminRegistrationRequest.getPassword());
 		userLogin.setPassword(encodedPassword);
 		userLogin.setCreatedBy(GlobalConstants.SUPER_ADMIN);
 		userLogin.setCreatedDate(new Date());
