@@ -2,6 +2,9 @@ package com.rasoiyya.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.sql.Time;
 import java.util.Date;
 
@@ -13,7 +16,8 @@ import java.util.Date;
 @Entity
 @Table(name="booking_details")
 @NamedQuery(name="BookingDetail.findAll", query="SELECT b FROM BookingDetail b")
-public class BookingDetail implements Serializable {
+@EntityListeners(AuditingEntityListener.class)
+public class BookingDetail extends Auditable implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -35,13 +39,6 @@ public class BookingDetail implements Serializable {
 	@Column(name="booking_type")
 	private String bookingType;
 
-	@Column(name="created_by")
-	private String createdBy;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="created_date")
-	private Date createdDate;
-
 	@Column(name="evening_time_slot")
 	private Time eveningTimeSlot;
 
@@ -53,13 +50,6 @@ public class BookingDetail implements Serializable {
 
 	@Column(name="food_type")
 	private String foodType;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="last_updated_date")
-	private Date lastUpdatedDate;
-
-	@Column(name="modified_by")
-	private String modifiedBy;
 
 	@Column(name="morning_time_slot")
 	private Time morningTimeSlot;
@@ -144,22 +134,6 @@ public class BookingDetail implements Serializable {
 		this.bookingType = bookingType;
 	}
 
-	public String getCreatedBy() {
-		return this.createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public Date getCreatedDate() {
-		return this.createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-
 	public Time getEveningTimeSlot() {
 		return this.eveningTimeSlot;
 	}
@@ -190,22 +164,6 @@ public class BookingDetail implements Serializable {
 
 	public void setFoodType(String foodType) {
 		this.foodType = foodType;
-	}
-
-	public Date getLastUpdatedDate() {
-		return this.lastUpdatedDate;
-	}
-
-	public void setLastUpdatedDate(Date lastUpdatedDate) {
-		this.lastUpdatedDate = lastUpdatedDate;
-	}
-
-	public String getModifiedBy() {
-		return this.modifiedBy;
-	}
-
-	public void setModifiedBy(String modifiedBy) {
-		this.modifiedBy = modifiedBy;
 	}
 
 	public Time getMorningTimeSlot() {

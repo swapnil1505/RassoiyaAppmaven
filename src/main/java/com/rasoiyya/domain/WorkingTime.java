@@ -2,8 +2,10 @@ package com.rasoiyya.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.sql.Time;
-import java.util.Date;
 import java.util.List;
 
 
@@ -14,32 +16,19 @@ import java.util.List;
 @Entity
 @Table(name="working_time")
 @NamedQuery(name="WorkingTime.findAll", query="SELECT w FROM WorkingTime w")
-public class WorkingTime implements Serializable {
+@EntityListeners(AuditingEntityListener.class)
+public class WorkingTime extends Auditable implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="working_time_id")
 	private int workingTimeId;
 
-	@Column(name="created_by")
-	private String createdBy;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="created_date")
-	private Date createdDate;
-
 	@Column(name="evening_end")
 	private Time eveningEnd;
 
 	@Column(name="evening_start")
 	private Time eveningStart;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="last_updated_date")
-	private Date lastUpdatedDate;
-
-	@Column(name="modified_by")
-	private String modifiedBy;
 
 	@Column(name="morning_end")
 	private Time morningEnd;
@@ -62,22 +51,6 @@ public class WorkingTime implements Serializable {
 		this.workingTimeId = workingTimeId;
 	}
 
-	public String getCreatedBy() {
-		return this.createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public Date getCreatedDate() {
-		return this.createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-
 	public Time getEveningEnd() {
 		return this.eveningEnd;
 	}
@@ -92,22 +65,6 @@ public class WorkingTime implements Serializable {
 
 	public void setEveningStart(Time eveningStart) {
 		this.eveningStart = eveningStart;
-	}
-
-	public Date getLastUpdatedDate() {
-		return this.lastUpdatedDate;
-	}
-
-	public void setLastUpdatedDate(Date lastUpdatedDate) {
-		this.lastUpdatedDate = lastUpdatedDate;
-	}
-
-	public String getModifiedBy() {
-		return this.modifiedBy;
-	}
-
-	public void setModifiedBy(String modifiedBy) {
-		this.modifiedBy = modifiedBy;
 	}
 
 	public Time getMorningEnd() {

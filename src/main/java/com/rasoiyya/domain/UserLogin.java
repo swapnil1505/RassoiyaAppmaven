@@ -2,6 +2,9 @@ package com.rasoiyya.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +16,8 @@ import java.util.List;
 @Entity
 @Table(name="user_login")
 @NamedQuery(name="UserLogin.findAll", query="SELECT u FROM UserLogin u")
-public class UserLogin implements Serializable {
+@EntityListeners(AuditingEntityListener.class)
+public class UserLogin extends Auditable implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	public UserLogin(){
@@ -21,12 +25,8 @@ public class UserLogin implements Serializable {
 	
 	public UserLogin(UserLogin user) {
 		this.userId = user.getUserId();
-		this.createdBy = user.getCreatedBy();
-		this.createdDate = user.getCreatedDate();
 		this.isActive = user.getIsActive();
 		this.isParent = user.getIsParent();
-		this.lastUpdatedDate = user.getLastUpdatedDate();
-		this.modifiedBy = user.getModifiedBy();
 		this.password = user.getPassword();
 		this.username = user.getUsername();
 		this.accountNonExpired = user.isAccountNonExpired();
@@ -40,25 +40,11 @@ public class UserLogin implements Serializable {
 	@Column(name="user_id")
 	private int userId;
 
-	@Column(name="created_by")
-	private String createdBy;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="created_date")
-	private Date createdDate;
-
 	@Column(name="is_active")
 	private boolean isActive;
 
 	@Column(name="is_parent")
 	private String isParent;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="last_updated_date")
-	private Date lastUpdatedDate;
-
-	@Column(name="modified_by")
-	private String modifiedBy;
 
 	private String password;
 
@@ -136,22 +122,6 @@ public class UserLogin implements Serializable {
 		this.userId = userId;
 	}
 
-	public String getCreatedBy() {
-		return this.createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public Date getCreatedDate() {
-		return this.createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-
 	public boolean getIsActive() {
 		return this.isActive;
 	}
@@ -166,22 +136,6 @@ public class UserLogin implements Serializable {
 
 	public void setIsParent(String isParent) {
 		this.isParent = isParent;
-	}
-
-	public Date getLastUpdatedDate() {
-		return this.lastUpdatedDate;
-	}
-
-	public void setLastUpdatedDate(Date lastUpdatedDate) {
-		this.lastUpdatedDate = lastUpdatedDate;
-	}
-
-	public String getModifiedBy() {
-		return this.modifiedBy;
-	}
-
-	public void setModifiedBy(String modifiedBy) {
-		this.modifiedBy = modifiedBy;
 	}
 
 	public String getPassword() {

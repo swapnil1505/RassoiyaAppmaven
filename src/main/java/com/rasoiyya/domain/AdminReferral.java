@@ -2,6 +2,9 @@ package com.rasoiyya.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.util.Date;
 import java.util.List;
 
@@ -13,29 +16,16 @@ import java.util.List;
 @Entity
 @Table(name="admin_referral")
 @NamedQuery(name="AdminReferral.findAll", query="SELECT a FROM AdminReferral a")
-public class AdminReferral implements Serializable {
+@EntityListeners(AuditingEntityListener.class)
+public class AdminReferral extends Auditable implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="admin_referral_id")
 	private int adminReferralId;
 
-	@Column(name="created_by")
-	private String createdBy;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="created_date")
-	private Date createdDate;
-
 	@Column(name="is_active")
 	private String isActive;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="last_updated_date")
-	private Date lastUpdatedDate;
-
-	@Column(name="modified_by")
-	private String modifiedBy;
 
 	@Lob
 	@Column(name="offer_details")
@@ -59,44 +49,12 @@ public class AdminReferral implements Serializable {
 		this.adminReferralId = adminReferralId;
 	}
 
-	public String getCreatedBy() {
-		return this.createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public Date getCreatedDate() {
-		return this.createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-
 	public String getIsActive() {
 		return this.isActive;
 	}
 
 	public void setIsActive(String isActive) {
 		this.isActive = isActive;
-	}
-
-	public Date getLastUpdatedDate() {
-		return this.lastUpdatedDate;
-	}
-
-	public void setLastUpdatedDate(Date lastUpdatedDate) {
-		this.lastUpdatedDate = lastUpdatedDate;
-	}
-
-	public String getModifiedBy() {
-		return this.modifiedBy;
-	}
-
-	public void setModifiedBy(String modifiedBy) {
-		this.modifiedBy = modifiedBy;
 	}
 
 	public String getOfferDetails() {

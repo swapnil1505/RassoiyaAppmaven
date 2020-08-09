@@ -73,29 +73,7 @@ public class AdminProfileServiceImpl implements AdminProfileService {
 						List <Admin> admins = adminRepository.findByPersonId(person.getPersonId());
 						if (admins != null && admins.size() > 0)
 							admin = admins.get(0);
-						
 						prepareResponseObject(response, person, userLogin, admin);
-						
-						/*response.setDate_of_birth(person.getDateOfBirth());
-						response.setEmail_id(person.getEmail());
-						response.setFirst_name(person.getFirstname());
-						response.setGender(person.getGender());
-						response.setGovt_id_no(person.getGovtIdNo());
-						response.setGovt_id_type(person.getGovtIdType());
-						response.setLast_name(person.getLastname());
-						response.setMobile_number(person.getMobileNo());
-						response.setModified_by(person.getModifiedBy());
-						response.setCreated_by(person.getCreatedBy());
-						response.setCreated_date(StringUtils.dateToString(person.getCreatedDate()));
-						response.setModified_date(StringUtils.dateToString(person.getLastUpdatedDate()));
-						
-						List <Admin> admins = adminRepository.findByPersonId(person.getPersonId());
-						if (admins != null && admins.size() > 0) {
-							Admin admin = admins.get(0);
-							response.setIs_kyc_verified(admin.getIsKycVerified());
-							response.setAdmin_status(admin.getStatus());
-							response.setAdmin_id(Integer.toString(admin.getAdminId()));
-						}*/
 					}
 					
 					List <UserAddress> userAddressList =  userAddressRepository.findAddressByuserId(userLogin.getUserId());
@@ -167,8 +145,6 @@ public class AdminProfileServiceImpl implements AdminProfileService {
 					person.setGovtIdType(adminUpdateProfileRequest.getGovt_id_type());
 					person.setLastname(adminUpdateProfileRequest.getLast_name());
 					person.setMobileNo(adminUpdateProfileRequest.getMobile_number());
-					person.setModifiedBy(GlobalConstants.SUPER_ADMIN);
-					person.setLastUpdatedDate(new Date());
 				}
 				
 				prepareResponseObject(adminProfileResponse, person, userLogin, admin);
@@ -200,11 +176,6 @@ public class AdminProfileServiceImpl implements AdminProfileService {
 								state.setStateId(Integer.valueOf(addressRequest.getState()));
 								address.setState(state);
 							}
-							if (StringUtils.isNotEmptyStr(adminUpdateProfileRequest.getCreated_by())) {
-								address.setModifiedBy(adminUpdateProfileRequest.getCreated_by());
-							} else {
-								address.setModifiedBy(GlobalConstants.SUPER_ADMIN);
-							}
 							prepareAddressResponseObject(addressResponse, address);
 							if(StringUtils.isNotEmptyStr(addressRequest.getUserAddressId()) ) {
 								Optional<UserAddress> optionalUserAddress = userAddressRepository.findById(Integer.valueOf(addressRequest.getUserAddressId()));
@@ -225,15 +196,6 @@ public class AdminProfileServiceImpl implements AdminProfileService {
 							userAddress.setAddressId(address.getAddressId());
 							userAddress.setUserLoginId(userLogin.getUserId());
 							userAddress.setIsCurrentAddress(addressRequest.getIs_current_address());
-							userAddress.setModifiedBy(GlobalConstants.SUPER_ADMIN);
-							userAddress.setCreatedBy(GlobalConstants.SUPER_ADMIN);
-							if (StringUtils.isNotEmptyStr(adminUpdateProfileRequest.getCreated_by())) { 
-								userAddress.setModifiedBy(adminUpdateProfileRequest.getCreated_by());
-								userAddress.setCreatedBy(adminUpdateProfileRequest.getCreated_by());
-							}
-							userAddress.setCreatedDate(new Date());
-							userAddress.setModifiedDate(new Date());
-							
 							// Save User - Address Mapping Data
 							userAddress = userAddressRepository.save(userAddress);
 							addressResponse.setIs_current_address(userAddress.getIsCurrentAddress());
@@ -282,13 +244,8 @@ public class AdminProfileServiceImpl implements AdminProfileService {
 			address.setState(state);
 		}
 		
-		address.setCreatedBy(GlobalConstants.SUPER_ADMIN);
-		address.setModifiedBy(GlobalConstants.SUPER_ADMIN);
-		
-		address.setCreatedDate(new Date());
 		address.setDistrict(addressRequest.getDistrict());
 		address.setGeoLocation(addressRequest.getGeo_location());
-		address.setLastUpdatedDate(new Date());				
 		address.setPincode(addressRequest.getPin_code());
 		
 		return address;
@@ -307,14 +264,13 @@ public class AdminProfileServiceImpl implements AdminProfileService {
 			response.setGovt_id_type(person.getGovtIdType());
 			response.setLast_name(person.getLastname());
 			response.setMobile_number(person.getMobileNo());
-			response.setModified_by(person.getModifiedBy());
-			response.setCreated_by(person.getCreatedBy());
-			response.setCreated_date(StringUtils.dateToString(person.getCreatedDate()));
-			response.setModified_date(StringUtils.dateToString(person.getLastUpdatedDate()));
-			
 			response.setIs_kyc_verified(admin.getIsKycVerified());
 			response.setAdmin_status(admin.getStatus());
 			response.setAdmin_id(Integer.toString(admin.getAdminId()));
+			response.setModified_by(person.getModifiedBy());
+			response.setModified_date(person.getLastUpdatedDate().toString());
+			response.setCreated_by(person.getCreatedBy());
+			response.setCreated_date(person.getCreatedDate().toString());
 		}		
 	}
 	
@@ -324,13 +280,13 @@ public class AdminProfileServiceImpl implements AdminProfileService {
 		addressRes.setAddress_line2(address.getAddressLine2());
 		addressRes.setAddress_type(address.getAddressType());
 		addressRes.setCity(Integer.toString(address.getCity().getCityId()));
-		addressRes.setCreated_date(StringUtils.dateToString(address.getCreatedDate()));
-		addressRes.setModified_date(StringUtils.dateToString(address.getLastUpdatedDate()));
-		addressRes.setCreated_by(address.getCreatedBy());
-		addressRes.setModified_by(address.getModifiedBy());
 		addressRes.setDistrict(address.getDistrict());
 		addressRes.setGeo_location(address.getGeoLocation());
 		addressRes.setState(Integer.toString(address.getState().getStateId()));
 		addressRes.setPin_code(address.getPincode());
+		addressRes.setModified_by(address.getModifiedBy());
+		addressRes.setModified_date(address.getLastUpdatedDate().toString());
+		addressRes.setCreated_by(address.getCreatedBy());
+		addressRes.setCreated_date(address.getCreatedDate().toString());
 	}
 }

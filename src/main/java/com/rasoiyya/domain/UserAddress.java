@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,10 +14,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 @Entity
 @Table(name="user_address")
 @NamedQuery(name="UserAddress.findAll", query="SELECT a FROM UserAddress a")
-public class UserAddress  implements Serializable{
+@EntityListeners(AuditingEntityListener.class)
+public class UserAddress extends Auditable implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -34,20 +38,6 @@ public class UserAddress  implements Serializable{
 	@Column(name="is_current_address")
 	private String isCurrentAddress;
 	
-	@Column(name="created_by")
-	private String createdBy;
-	
-	@Column(name="modified_by")
-	private String modifiedBy;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="created_date")
-	private Date createdDate;
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="modified_date")
-	private Date modifiedDate;
-
 	public int getUserAddressId() {
 		return userAddressId;
 	}
@@ -80,37 +70,4 @@ public class UserAddress  implements Serializable{
 		this.isCurrentAddress = isCurrentAddress;
 	}
 
-	public String getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public String getModifiedBy() {
-		return modifiedBy;
-	}
-
-	public void setModifiedBy(String modifiedBy) {
-		this.modifiedBy = modifiedBy;
-	}
-
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	public Date getModifiedDate() {
-		return modifiedDate;
-	}
-
-	public void setModifiedDate(Date modifiedDate) {
-		this.modifiedDate = modifiedDate;
-	}
-	
-	
 }

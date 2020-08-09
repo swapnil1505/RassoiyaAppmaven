@@ -2,6 +2,9 @@ package com.rasoiyya.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.util.Date;
 import java.util.List;
 
@@ -13,19 +16,13 @@ import java.util.List;
 @Entity
 @Table(name="cook_skill_set")
 @NamedQuery(name="CookSkillSet.findAll", query="SELECT c FROM CookSkillSet c")
-public class CookSkillSet implements Serializable {
+@EntityListeners(AuditingEntityListener.class)
+public class CookSkillSet extends Auditable implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="cook_skill_set_id")
 	private int cookSkillSetId;
-
-	@Column(name="created_by")
-	private String createdBy;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="created_date")
-	private Date createdDate;
 
 	@Lob
 	@Column(name="food_categories")
@@ -37,13 +34,6 @@ public class CookSkillSet implements Serializable {
 
 	@Lob
 	private String languages;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="last_updated_date")
-	private Date lastUpdatedDate;
-
-	@Column(name="modified_by")
-	private String modifiedBy;
 
 	@Column(name="service_type")
 	private String serviceType;
@@ -61,22 +51,6 @@ public class CookSkillSet implements Serializable {
 
 	public void setCookSkillSetId(int cookSkillSetId) {
 		this.cookSkillSetId = cookSkillSetId;
-	}
-
-	public String getCreatedBy() {
-		return this.createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public Date getCreatedDate() {
-		return this.createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
 	}
 
 	public String getFoodCategories() {
@@ -101,22 +75,6 @@ public class CookSkillSet implements Serializable {
 
 	public void setLanguages(String languages) {
 		this.languages = languages;
-	}
-
-	public Date getLastUpdatedDate() {
-		return this.lastUpdatedDate;
-	}
-
-	public void setLastUpdatedDate(Date lastUpdatedDate) {
-		this.lastUpdatedDate = lastUpdatedDate;
-	}
-
-	public String getModifiedBy() {
-		return this.modifiedBy;
-	}
-
-	public void setModifiedBy(String modifiedBy) {
-		this.modifiedBy = modifiedBy;
 	}
 
 	public String getServiceType() {

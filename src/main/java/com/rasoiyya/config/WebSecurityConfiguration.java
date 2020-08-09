@@ -18,7 +18,11 @@ import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWrite
 import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
 
 import io.github.jhipster.config.JHipsterProperties;
-
+/**
+ * 
+ * @author Manish
+ *
+ */
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 @Import(SecurityProblemSupport.class)

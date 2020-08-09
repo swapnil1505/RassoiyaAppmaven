@@ -2,6 +2,9 @@ package com.rasoiyya.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.util.Date;
 import java.util.List;
 
@@ -12,29 +15,16 @@ import java.util.List;
  */
 @Entity
 @NamedQuery(name="Cook.findAll", query="SELECT c FROM Cook c")
-public class Cook implements Serializable {
+@EntityListeners(AuditingEntityListener.class)
+public class Cook extends Auditable implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="cook_id")
 	private int cookId;
 
-	@Column(name="created_by")
-	private String createdBy;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="created_date")
-	private Date createdDate;
-
 	@Column(name="kyc_status")
 	private String kycStatus;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="last_updated_date")
-	private Date lastUpdatedDate;
-
-	@Column(name="modified_by")
-	private String modifiedBy;
 
 	//bi-directional many-to-one association to BookingDetail
 	@OneToMany(mappedBy="cook")
@@ -86,44 +76,12 @@ public class Cook implements Serializable {
 		this.cookId = cookId;
 	}
 
-	public String getCreatedBy() {
-		return this.createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public Date getCreatedDate() {
-		return this.createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-
 	public String getKycStatus() {
 		return this.kycStatus;
 	}
 
 	public void setKycStatus(String kycStatus) {
 		this.kycStatus = kycStatus;
-	}
-
-	public Date getLastUpdatedDate() {
-		return this.lastUpdatedDate;
-	}
-
-	public void setLastUpdatedDate(Date lastUpdatedDate) {
-		this.lastUpdatedDate = lastUpdatedDate;
-	}
-
-	public String getModifiedBy() {
-		return this.modifiedBy;
-	}
-
-	public void setModifiedBy(String modifiedBy) {
-		this.modifiedBy = modifiedBy;
 	}
 
 	public List<BookingDetail> getBookingDetails() {

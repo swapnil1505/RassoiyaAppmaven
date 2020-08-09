@@ -19,7 +19,7 @@ import javax.persistence.MappedSuperclass;
  */
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class AbstractAuditingEntity implements Serializable {
+public abstract class Auditable implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -34,14 +34,14 @@ public abstract class AbstractAuditingEntity implements Serializable {
     private Instant createdDate = Instant.now();
 
     @LastModifiedBy
-    @Column(name = "last_modified_by", length = 50)
+    @Column(name = "modified_by", length = 50)
     @JsonIgnore
-    private String lastModifiedBy;
+    private String modifiedBy;
 
     @LastModifiedDate
-    @Column(name = "last_modified_date")
+    @Column(name = "last_updated_date")
     @JsonIgnore
-    private Instant lastModifiedDate = Instant.now();
+    private Instant lastUpdatedDate = Instant.now();
 
     public String getCreatedBy() {
         return createdBy;
@@ -59,19 +59,21 @@ public abstract class AbstractAuditingEntity implements Serializable {
         this.createdDate = createdDate;
     }
 
-    public String getLastModifiedBy() {
-        return lastModifiedBy;
-    }
+	public String getModifiedBy() {
+		return modifiedBy;
+	}
 
-    public void setLastModifiedBy(String lastModifiedBy) {
-        this.lastModifiedBy = lastModifiedBy;
-    }
+	public void setModifiedBy(String modifiedBy) {
+		this.modifiedBy = modifiedBy;
+	}
 
-    public Instant getLastModifiedDate() {
-        return lastModifiedDate;
-    }
+	public Instant getLastUpdatedDate() {
+		return lastUpdatedDate;
+	}
 
-    public void setLastModifiedDate(Instant lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
+	public void setLastUpdatedDate(Instant lastUpdatedDate) {
+		this.lastUpdatedDate = lastUpdatedDate;
+	}
+
+   
 }

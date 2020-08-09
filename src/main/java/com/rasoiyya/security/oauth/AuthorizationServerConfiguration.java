@@ -17,7 +17,11 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import javax.sql.DataSource;
-
+/**
+ * 
+ * @author Manish
+ *
+ */
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfiguration implements AuthorizationServerConfigurer {

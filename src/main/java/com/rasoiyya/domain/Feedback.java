@@ -2,6 +2,9 @@ package com.rasoiyya.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.util.Date;
 
 
@@ -11,7 +14,8 @@ import java.util.Date;
  */
 @Entity
 @NamedQuery(name="Feedback.findAll", query="SELECT f FROM Feedback f")
-public class Feedback implements Serializable {
+@EntityListeners(AuditingEntityListener.class)
+public class Feedback extends Auditable implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -22,13 +26,6 @@ public class Feedback implements Serializable {
 	@Column(name="admin_feedback")
 	private String adminFeedback;
 
-	@Column(name="created_by")
-	private String createdBy;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="created_date")
-	private Date createdDate;
-
 	@Lob
 	@Column(name="customer_feedback")
 	private String customerFeedback;
@@ -36,13 +33,6 @@ public class Feedback implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="date_time")
 	private Date dateTime;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="last_updated_datel")
-	private Date lastUpdatedDatel;
-
-	@Column(name="modified_by")
-	private String modifiedBy;
 
 	@Column(name="service_type")
 	private String serviceType;
@@ -81,22 +71,6 @@ public class Feedback implements Serializable {
 		this.adminFeedback = adminFeedback;
 	}
 
-	public String getCreatedBy() {
-		return this.createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public Date getCreatedDate() {
-		return this.createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-
 	public String getCustomerFeedback() {
 		return this.customerFeedback;
 	}
@@ -111,22 +85,6 @@ public class Feedback implements Serializable {
 
 	public void setDateTime(Date dateTime) {
 		this.dateTime = dateTime;
-	}
-
-	public Date getLastUpdatedDatel() {
-		return this.lastUpdatedDatel;
-	}
-
-	public void setLastUpdatedDatel(Date lastUpdatedDatel) {
-		this.lastUpdatedDatel = lastUpdatedDatel;
-	}
-
-	public String getModifiedBy() {
-		return this.modifiedBy;
-	}
-
-	public void setModifiedBy(String modifiedBy) {
-		this.modifiedBy = modifiedBy;
 	}
 
 	public String getServiceType() {

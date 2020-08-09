@@ -91,19 +91,8 @@ public class AdminRegistrationServiceImpl implements AdminRegistrationService {
 						address.setState(state);
 					}
 					
-					if (StringUtils.isNotEmptyStr(adminRegistrationRequest.getCreated_by())) {
-						address.setCreatedBy(adminRegistrationRequest.getCreated_by());
-						address.setModifiedBy(adminRegistrationRequest.getCreated_by());
-					} else {
-						address.setCreatedBy(GlobalConstants.SUPER_ADMIN);
-						address.setModifiedBy(GlobalConstants.SUPER_ADMIN);
-						
-					}
-					
-					address.setCreatedDate(new Date());
 					address.setDistrict(addressRequest.getDistrict());
 					address.setGeoLocation(addressRequest.getGeo_location());
-					address.setLastUpdatedDate(new Date());				
 					address.setPincode(addressRequest.getPin_code());
 					
 					// Save the Address
@@ -113,16 +102,6 @@ public class AdminRegistrationServiceImpl implements AdminRegistrationService {
 					userAddress.setAddressId(address.getAddressId());
 					userAddress.setUserLoginId(userLogin.getUserId());
 					userAddress.setIsCurrentAddress(addressRequest.getIs_current_address());
-					userAddress.setModifiedBy(GlobalConstants.SUPER_ADMIN);
-					userAddress.setCreatedBy(GlobalConstants.SUPER_ADMIN);
-					if (StringUtils.isNotEmptyStr(adminRegistrationRequest.getCreated_by())) { 
-						userAddress.setModifiedBy(adminRegistrationRequest.getCreated_by());
-						userAddress.setCreatedBy(adminRegistrationRequest.getCreated_by());
-					}
-					
-					userAddress.setCreatedDate(new Date());
-					userAddress.setModifiedDate(new Date());
-					
 					// Save User - Address Mapping Data
 					userAddressRepository.save(userAddress);					
 				}
@@ -130,14 +109,6 @@ public class AdminRegistrationServiceImpl implements AdminRegistrationService {
 			
 			Admin admin = new Admin();
 			admin.setPerson(person);
-			admin.setCreatedBy(GlobalConstants.SUPER_ADMIN);
-			admin.setModifiedBy(GlobalConstants.SUPER_ADMIN);
-			if (StringUtils.isNotEmptyStr(adminRegistrationRequest.getCreated_by())) { 
-				admin.setModifiedBy(adminRegistrationRequest.getCreated_by());
-				admin.setCreatedBy(adminRegistrationRequest.getCreated_by());
-			}
-			admin.setCreatedDate(new Date());
-			admin.setLastUpdatedDate(new Date());
 			admin.setIsKycVerified(adminRegistrationRequest.getIs_kyc_verified());
 			if ("Y".equals(adminRegistrationRequest.getIs_kyc_verified())) {
 				admin.setStatus(GlobalConstants.ACTIVE_STATUS);
@@ -162,18 +133,10 @@ public class AdminRegistrationServiceImpl implements AdminRegistrationService {
 		Person person = new Person();
 		person.setFirstname(adminRegistrationRequest.getFirst_name());
 		person.setLastname(adminRegistrationRequest.getLast_name());
-		person.setCreatedBy(GlobalConstants.SUPER_ADMIN);
-		person.setCreatedDate(new Date());
 		person.setEmail(adminRegistrationRequest.getEmail_id());
 		person.setGovtIdNo(adminRegistrationRequest.getGovt_id_no());
 		person.setGovtIdType(adminRegistrationRequest.getGovt_id_type());
-		person.setLastUpdatedDate(new Date());
 		person.setMobileNo(adminRegistrationRequest.getMobile_number());
-		person.setModifiedBy(GlobalConstants.SUPER_ADMIN);
-		if (StringUtils.isNotEmptyStr(adminRegistrationRequest.getCreated_by())) { 
-			person.setModifiedBy(adminRegistrationRequest.getCreated_by());
-			person.setCreatedBy(adminRegistrationRequest.getCreated_by());
-		}
 		person.setDateOfBirth(adminRegistrationRequest.getDate_of_birth());
 		person.setGender(adminRegistrationRequest.getGender());
 		return person;
@@ -182,19 +145,10 @@ public class AdminRegistrationServiceImpl implements AdminRegistrationService {
 	private UserLogin getUserLogin(AdminRegistrationRequest adminRegistrationRequest) {
 		UserLogin userLogin = new UserLogin();
 		userLogin.setUsername(adminRegistrationRequest.getUser_name());
-//		String encodedPassword = Base64.getEncoder().encodeToString(adminRegistrationRequest.getPassword().getBytes());
 		String encodedPassword = passwordEncoder.encode(adminRegistrationRequest.getPassword());
 		userLogin.setPassword(encodedPassword);
-		userLogin.setCreatedBy(GlobalConstants.SUPER_ADMIN);
-		userLogin.setCreatedDate(new Date());
 		userLogin.setIsActive(true);
 		userLogin.setIsParent("N");
-		userLogin.setModifiedBy(GlobalConstants.SUPER_ADMIN);
-		if (StringUtils.isNotEmptyStr(adminRegistrationRequest.getCreated_by())) { 
-			userLogin.setModifiedBy(adminRegistrationRequest.getCreated_by());
-			userLogin.setCreatedBy(adminRegistrationRequest.getCreated_by());
-		}
-		userLogin.setLastUpdatedDate(new Date());
 		Role role = new Role();
 		role.setRoleId(1);
 		userLogin.setRoles(role);
