@@ -92,4 +92,5 @@ create table if not exists  oauth_client_details (
 
 INSERT INTO oauth_client_details (client_id, client_secret, web_server_redirect_uri, scope, access_token_validity, refresh_token_validity, resource_ids, authorized_grant_types, additional_information) VALUES ('mobile', '{bcrypt}$2a$10$gPhlXZfms0EpNHX0.HHptOhoFD1AoxSr/yUIdTqA8vtjeP4zi0DDu', 'http://localhost:8080/code', 'READ,WRITE', '3600', '10000', 'admin,cook,customer', 'authorization_code,password,refresh_token,implicit', '{}');
 
-
+ALTER TABLE `user_address` 
+CHANGE COLUMN `modified_date` `last_updated_date` DATETIME NULL DEFAULT NULL ;

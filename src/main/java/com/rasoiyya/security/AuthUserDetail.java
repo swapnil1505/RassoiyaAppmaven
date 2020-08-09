@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-
+/**
+ * @author Manish
+ */
 public class AuthUserDetail extends UserLogin implements UserDetails {
 
     public AuthUserDetail(UserLogin user) {

@@ -2,6 +2,9 @@ package com.rasoiyya.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +15,8 @@ import java.util.List;
  */
 @Entity
 @NamedQuery(name="Invoice.findAll", query="SELECT i FROM Invoice i")
-public class Invoice implements Serializable {
+@EntityListeners(AuditingEntityListener.class)
+public class Invoice extends Auditable implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -22,22 +26,8 @@ public class Invoice implements Serializable {
 	@Column(name="cook_service_type")
 	private String cookServiceType;
 
-	@Column(name="created_by")
-	private String createdBy;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="created_date")
-	private Date createdDate;
-
 	@Column(name="is_invoice_sent")
 	private String isInvoiceSent;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="last_updated_date")
-	private Date lastUpdatedDate;
-
-	@Column(name="modified_by")
-	private String modifiedBy;
 
 	@Column(name="number_of_days")
 	private int numberOfDays;
@@ -82,44 +72,12 @@ public class Invoice implements Serializable {
 		this.cookServiceType = cookServiceType;
 	}
 
-	public String getCreatedBy() {
-		return this.createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public Date getCreatedDate() {
-		return this.createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-
 	public String getIsInvoiceSent() {
 		return this.isInvoiceSent;
 	}
 
 	public void setIsInvoiceSent(String isInvoiceSent) {
 		this.isInvoiceSent = isInvoiceSent;
-	}
-
-	public Date getLastUpdatedDate() {
-		return this.lastUpdatedDate;
-	}
-
-	public void setLastUpdatedDate(Date lastUpdatedDate) {
-		this.lastUpdatedDate = lastUpdatedDate;
-	}
-
-	public String getModifiedBy() {
-		return this.modifiedBy;
-	}
-
-	public void setModifiedBy(String modifiedBy) {
-		this.modifiedBy = modifiedBy;
 	}
 
 	public int getNumberOfDays() {

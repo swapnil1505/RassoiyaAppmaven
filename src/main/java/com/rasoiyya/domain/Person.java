@@ -2,6 +2,9 @@ package com.rasoiyya.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.util.Date;
 
 
@@ -11,20 +14,14 @@ import java.util.Date;
  */
 @Entity
 @NamedQuery(name="Person.findAll", query="SELECT p FROM Person p")
-public class Person implements Serializable {
+@EntityListeners(AuditingEntityListener.class)
+public class Person extends Auditable implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="person_id")
 	private int personId;
-
-	@Column(name="created_by")
-	private String createdBy;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="created_date")
-	private Date createdDate;
 
 	private String email;
 
@@ -42,19 +39,12 @@ public class Person implements Serializable {
 	@Column(name="govt_id_type")
 	private String govtIdType;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="last_updated_date")
-	private Date lastUpdatedDate;
-
 	private String lastname;
 
 	private String middlename;
 
 	@Column(name="mobile_no")
 	private String mobileNo;
-
-	@Column(name="modified_by")
-	private String modifiedBy;
 
 	@ManyToOne
 	@JoinColumn(name="user_login_id")
@@ -91,24 +81,6 @@ public class Person implements Serializable {
 		this.personId = personId;
 	}
 
-	public String getCreatedBy() {
-		return this.createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public Date getCreatedDate() {
-		return this.createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-	
-	
-
 	public String getEmail() {
 		return this.email;
 	}
@@ -141,14 +113,6 @@ public class Person implements Serializable {
 		this.govtIdType = govtIdType;
 	}
 
-	public Date getLastUpdatedDate() {
-		return this.lastUpdatedDate;
-	}
-
-	public void setLastUpdatedDate(Date lastUpdatedDate) {
-		this.lastUpdatedDate = lastUpdatedDate;
-	}
-
 	public String getLastname() {
 		return this.lastname;
 	}
@@ -171,14 +135,6 @@ public class Person implements Serializable {
 
 	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
-	}
-
-	public String getModifiedBy() {
-		return this.modifiedBy;
-	}
-
-	public void setModifiedBy(String modifiedBy) {
-		this.modifiedBy = modifiedBy;
 	}
 
 	public UserLogin getUserLogin() {

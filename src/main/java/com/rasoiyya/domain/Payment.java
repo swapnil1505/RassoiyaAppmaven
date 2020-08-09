@@ -2,6 +2,9 @@ package com.rasoiyya.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +15,8 @@ import java.util.List;
  */
 @Entity
 @NamedQuery(name="Payment.findAll", query="SELECT p FROM Payment p")
-public class Payment implements Serializable {
+@EntityListeners(AuditingEntityListener.class)
+public class Payment extends Auditable implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -24,20 +28,6 @@ public class Payment implements Serializable {
 
 	@Column(name="cook_received_amt")
 	private double cookReceivedAmt;
-
-	@Column(name="created_by")
-	private String createdBy;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="created_date")
-	private Date createdDate;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="last_updated_date")
-	private Date lastUpdatedDate;
-
-	@Column(name="modified_by")
-	private String modifiedBy;
 
 	@Column(name="payment_mode")
 	private String paymentMode;
@@ -99,38 +89,6 @@ public class Payment implements Serializable {
 
 	public void setCookReceivedAmt(double cookReceivedAmt) {
 		this.cookReceivedAmt = cookReceivedAmt;
-	}
-
-	public String getCreatedBy() {
-		return this.createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public Date getCreatedDate() {
-		return this.createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	public Date getLastUpdatedDate() {
-		return this.lastUpdatedDate;
-	}
-
-	public void setLastUpdatedDate(Date lastUpdatedDate) {
-		this.lastUpdatedDate = lastUpdatedDate;
-	}
-
-	public String getModifiedBy() {
-		return this.modifiedBy;
-	}
-
-	public void setModifiedBy(String modifiedBy) {
-		this.modifiedBy = modifiedBy;
 	}
 
 	public String getPaymentMode() {
