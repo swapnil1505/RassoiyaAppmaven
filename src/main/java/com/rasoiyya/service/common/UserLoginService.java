@@ -1,9 +1,12 @@
 package com.rasoiyya.service.common;
 
-import com.rasoiyya.dto.UserLoginRequest;
-
+/**
+ * 
+ * @author ravi.shakya
+ *
+ */
 public interface UserLoginService {
 
-	void getLogin(UserLoginRequest userLoginRequest);
+	boolean isValidMobile(String mobile);
 
 }
