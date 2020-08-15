@@ -104,3 +104,17 @@ ALTER TABLE `user_login` ADD COLUMN `accountNonLocked` smallint(1) NULL DEFAULT 
 
 ALTER TABLE `rasoiyya`.`user_login` CHANGE COLUMN `password` `password` VARCHAR(100) NOT NULL ;
 
+-- OTP log table @Ravi
+
+CREATE TABLE `otplog` (
+  `otp_id` int NOT NULL AUTO_INCREMENT,
+  `mobile` varchar(45) NOT NULL,
+  `otp` varchar(45) NOT NULL,
+  `created_date` datetime NOT NULL,
+  `last_updated_date` datetime DEFAULT NULL,
+  `created_by` varchar(45) DEFAULT NULL,
+  `modified_by` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`otp_id`),
+  UNIQUE KEY `mobile_UNIQUE` (`mobile`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
