@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rasoiyya.domain.Address;
 import com.rasoiyya.domain.City;
@@ -61,6 +62,7 @@ public class CustomerRegistrationServiceImpl implements CustomerRegistrationServ
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	@Transactional
 	@Override
 	public void createCustomerRegistration(CustomerRegistrationRequest customerRegistrationRequest) throws Exception {
 		try {
