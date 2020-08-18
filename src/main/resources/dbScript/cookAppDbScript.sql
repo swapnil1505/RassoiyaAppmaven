@@ -94,3 +94,13 @@ INSERT INTO oauth_client_details (client_id, client_secret, web_server_redirect_
 
 ALTER TABLE `user_address` 
 CHANGE COLUMN `modified_date` `last_updated_date` DATETIME NULL DEFAULT NULL ;
+
+-- Added by Suraj
+ALTER TABLE `rasoiyya_api_logs` ADD COLUMN `requestuid` VARCHAR(45) NULL DEFAULT NULL AFTER `modified_by`;
+
+ALTER TABLE `user_login` ADD COLUMN `accountNonExpired` smallint(1) NULL DEFAULT NULL AFTER `modified_by`;
+ALTER TABLE `user_login` ADD COLUMN `credentialsNonExpired` smallint(1) NULL DEFAULT NULL AFTER `accountNonExpired`;
+ALTER TABLE `user_login` ADD COLUMN `accountNonLocked` smallint(1) NULL DEFAULT NULL AFTER `credentialsNonExpired`;
+
+ALTER TABLE `rasoiyya`.`user_login` CHANGE COLUMN `password` `password` VARCHAR(100) NOT NULL ;
+
