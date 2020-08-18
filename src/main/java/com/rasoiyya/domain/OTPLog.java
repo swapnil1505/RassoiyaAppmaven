@@ -46,6 +46,9 @@ public class OTPLog implements Serializable {
 	@Column(name = "modified_by")
 	private String modifiedBy;
 
+	@Column(name = "created_by")
+	private String createdBy;
+
 	public OTPLog() {
 	}
 
@@ -95,6 +98,14 @@ public class OTPLog implements Serializable {
 
 	public void setModifiedBy(String modifiedBy) {
 		this.modifiedBy = modifiedBy;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
 	}
 
 	public static long getSerialversionuid() {

@@ -19,8 +19,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.rasoiyya.constants.MessageConstants;
 import com.rasoiyya.domain.OTPLog;
+import com.rasoiyya.domain.UserLogin;
 import com.rasoiyya.repository.common.OTPLogRepository;
+import com.rasoiyya.repository.common.UserLoginRepository;
 import com.rasoiyya.service.common.OTPLogService;
+import com.rasoiyya.util.GlobalConstants;
 
 /**
  * 
@@ -48,16 +51,16 @@ public class OTPLogServiceImpl implements OTPLogService {
 		System.out.println(byMobile);
 		if (byMobile != null) {
 			otpLog = oTPLogRepository.findById(byMobile.getOtpId()).get();
+			otpLog.setModifiedBy(GlobalConstants.USER_SELF);
 			otpLog.setLastUpdatedDate(requestedTime);
 			otpLog.setOtp(otp);
 			return oTPLogRepository.save(otpLog);
-
 		}
 		otpLog.setOtp(otp);
 		otpLog.setMobile(mobile);
 		otpLog.setCreatedDate(requestedTime);
 		otpLog.setLastUpdatedDate(requestedTime);
-		otpLog.setModifiedBy("modifiedBy");
+		otpLog.setCreatedBy(GlobalConstants.USER_SELF);
 		return oTPLogRepository.save(otpLog);
 	}
 
