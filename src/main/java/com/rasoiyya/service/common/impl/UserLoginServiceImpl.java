@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rasoiyya.domain.Person;
 import com.rasoiyya.domain.UserLogin;
 import com.rasoiyya.dto.UserLoginRequest;
 import com.rasoiyya.repository.common.PersonRepository;
@@ -37,7 +38,8 @@ public class UserLoginServiceImpl implements UserLoginService {
 	@Override
 	public boolean isValidMobile(String mobileNo) {
 		log.info("varifing moblie number!!");
-		return personRepository.userExistsByMobile(mobileNo);
+		Person person = personRepository.findPersonByMobile(mobileNo);
+		return person != null ? true : false;
 	}
 
 }

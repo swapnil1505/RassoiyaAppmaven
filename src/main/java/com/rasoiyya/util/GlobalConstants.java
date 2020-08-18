@@ -21,4 +21,5 @@ public class GlobalConstants {
 	public static String INACTIVE_STATUS = "INACTIVE";
 	public static String UPDATE_PROFILE_UNSUCESSFULL="Error Occured During Updating Profile";
 	public static String ADMIN_UPDATE_PROFILE = "AdminUpdateProfile";
+	public static String USER_SELF = "USER_SELF";
 }
