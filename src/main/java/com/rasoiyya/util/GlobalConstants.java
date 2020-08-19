@@ -21,10 +21,10 @@ public class GlobalConstants {
 	public static String INACTIVE_STATUS = "INACTIVE";
 	public static String UPDATE_PROFILE_UNSUCESSFULL="Error Occured During Updating Profile";
 	public static String ADMIN_UPDATE_PROFILE = "AdminUpdateProfile";
-	
 	public static String CUSTOMER = "CUSTOMER";
 	public static String CUSTOMER_REG_SUCCESSFULL="Customer Registration is SucessFully Done !!";
 	public static String CUSTOMER_REG_UNSUCCESSFULL="Error Occured During Customer Registration";
 	public static String CUSTOMER_REGISTARATION = "CustomerRegistration";
 	public static String CUSTOMER_VIEW_PROFILE = "CustomerViewProfile";
+	public static String USER_SELF = "USER_SELF";
 }
