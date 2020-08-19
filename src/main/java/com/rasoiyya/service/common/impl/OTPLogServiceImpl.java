@@ -1,7 +1,6 @@
 package com.rasoiyya.service.common.impl;
 
 import java.text.DecimalFormat;
-import java.util.Date;
 import java.util.Random;
 
 import org.slf4j.Logger;
@@ -19,11 +18,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.rasoiyya.constants.MessageConstants;
 import com.rasoiyya.domain.OTPLog;
-import com.rasoiyya.domain.UserLogin;
 import com.rasoiyya.repository.common.OTPLogRepository;
-import com.rasoiyya.repository.common.UserLoginRepository;
 import com.rasoiyya.service.common.OTPLogService;
-import com.rasoiyya.util.GlobalConstants;
 
 /**
  * 
@@ -44,23 +40,17 @@ public class OTPLogServiceImpl implements OTPLogService {
 	@Transactional
 	public OTPLog saveMobileOTP(String mobile, String otp) {
 		log.info("saving otp in db");
-		Date requestedTime = new Date();
 		OTPLog otpLog = new OTPLog();
 
 		OTPLog byMobile = findByMobile(mobile);
 		System.out.println(byMobile);
 		if (byMobile != null) {
 			otpLog = oTPLogRepository.findById(byMobile.getOtpId()).get();
-			otpLog.setModifiedBy(GlobalConstants.USER_SELF);
-			otpLog.setLastUpdatedDate(requestedTime);
 			otpLog.setOtp(otp);
 			return oTPLogRepository.save(otpLog);
 		}
 		otpLog.setOtp(otp);
 		otpLog.setMobile(mobile);
-		otpLog.setCreatedDate(requestedTime);
-		otpLog.setLastUpdatedDate(requestedTime);
-		otpLog.setCreatedBy(GlobalConstants.USER_SELF);
 		return oTPLogRepository.save(otpLog);
 	}
 
