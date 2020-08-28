@@ -1,4 +1,4 @@
-// Added By Naimish -> In Role Table 
+
 INSERT INTO `role` (`role_id`, `role_name`, `role_type`, `created_date`, `last_updated_date`, `created_by`, `modified_by`) VALUES (1, 'SUPER_ADMIN', 1, '2020-07-26 18:17:02', '2020-07-26 18:17:04', 'SYSTEM', 'SYSTEM');
 INSERT INTO `role` (`role_id`, `role_name`, `role_type`, `created_date`, `last_updated_date`, `created_by`, `modified_by`) VALUES (2, 'ADMIN', 2, '2020-07-26 18:20:35', '2020-07-26 18:20:36', 'SYSTEM', 'SYSTEM');
 INSERT INTO `role` (`role_id`, `role_name`, `role_type`, `created_date`, `last_updated_date`, `created_by`, `modified_by`) VALUES (3, 'COOK', 3, '2020-07-26 18:21:13', '2020-07-26 18:21:14', 'SYSTEM', 'SYSTEM');
@@ -6,19 +6,19 @@ INSERT INTO `role` (`role_id`, `role_name`, `role_type`, `created_date`, `last_u
 
 
 ALTER TABLE `person`
-	CHANGE COLUMN `middlename` `middlename` VARCHAR(45) NULL COLLATE AFTER `firstname`,
-	CHANGE COLUMN `lastname` `lastname` VARCHAR(45) NULL COLLATE AFTER `middlename`,
-	CHANGE COLUMN `email` `email` VARCHAR(45) NULL COLLATE AFTER `lastname`,
-	CHANGE COLUMN `govt_id_type` `govt_id_type` VARCHAR(45) NULL COLLATE AFTER `mobile_no`,
-	CHANGE COLUMN `govt_id_no` `govt_id_no` VARCHAR(45) NULL COLLATE AFTER `govt_id_type`;
+	CHANGE COLUMN `middlename` `middlename` VARCHAR(45) NULL  AFTER `firstname`,
+	CHANGE COLUMN `lastname` `lastname` VARCHAR(45) NULL  AFTER `middlename`,
+	CHANGE COLUMN `email` `email` VARCHAR(45) NULL  AFTER `lastname`,
+	CHANGE COLUMN `govt_id_type` `govt_id_type` VARCHAR(45) NULL  AFTER `mobile_no`,
+	CHANGE COLUMN `govt_id_no` `govt_id_no` VARCHAR(45) NULL  AFTER `govt_id_type`;
 
 ALTER TABLE `address`
-	CHANGE COLUMN `address_line1` `address_line1` VARCHAR(100) NOT NULL COLLATE  AFTER `address_id`,
-	CHANGE COLUMN `address_line2` `address_line2` VARCHAR(100) NULL COLLATE  AFTER `address_line1`,
-	CHANGE COLUMN `district` `district` VARCHAR(45) NULL COLLATE  AFTER `address_line2`,
-	CHANGE COLUMN `pincode` `pincode` VARCHAR(45) NOT NULL COLLATE  AFTER `district`,
-	CHANGE COLUMN `address_type` `address_type` VARCHAR(45) NULL COLLATE  AFTER `pincode`,
-	CHANGE COLUMN `geo_location` `geo_location` VARCHAR(45) NULL COLLATE  AFTER `address_type`;
+	CHANGE COLUMN `address_line1` `address_line1` VARCHAR(100) NOT NULL   AFTER `address_id`,
+	CHANGE COLUMN `address_line2` `address_line2` VARCHAR(100) NULL   AFTER `address_line1`,
+	CHANGE COLUMN `district` `district` VARCHAR(45) NULL  AFTER `address_line2`,
+	CHANGE COLUMN `pincode` `pincode` VARCHAR(45) NOT NULL  AFTER `district`,
+	CHANGE COLUMN `address_type` `address_type` VARCHAR(45) NULL   AFTER `pincode`,
+	CHANGE COLUMN `geo_location` `geo_location` VARCHAR(45) NULL   AFTER `address_type`;
 	
 ALTER TABLE `address`
 	CHANGE COLUMN `city_id` `city_id` INT(11) NULL AFTER `geo_location`,
@@ -66,7 +66,7 @@ CREATE TABLE `rasoiyya_api_logs` (
 ENGINE=InnoDB
 ;
 
-// Added By Naimish 29-07-2020
+
 
 ALTER TABLE `person` ADD COLUMN `date_of_birth` VARCHAR(50) NULL DEFAULT NULL AFTER `govt_id_no`;
 ALTER TABLE `person` ADD COLUMN `gender` VARCHAR(10) NULL DEFAULT NULL AFTER `date_of_birth`;
@@ -74,7 +74,7 @@ ALTER TABLE `admin` ADD COLUMN `status` VARCHAR(10) NOT NULL AFTER `is_kyc_verif
 
 ALTER TABLE `user_login` ADD UNIQUE INDEX `USER_NAME_UNIQUE` (`username`);
 
-// Added By Manish - OAuth 2.0  
+
 create table if not exists  oauth_client_details (
   client_id varchar(255) not null,
   client_secret varchar(255) not null,
@@ -116,5 +116,5 @@ CREATE TABLE `otplog` (
   `modified_by` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`otp_id`),
   UNIQUE KEY `mobile_UNIQUE` (`mobile`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 
 
