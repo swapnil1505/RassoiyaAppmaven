@@ -24,7 +24,7 @@ public class ResourceServerConfiguration  extends ResourceServerConfigurerAdapte
     @Override
     public void configure(HttpSecurity http) throws Exception {
     	http.authorizeRequests()
-    	.antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**", "/admin/v1/adminRegistration").permitAll()
+    	.antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**","/**" ,"/webjars/**", "/admin/v1/adminRegistration").permitAll()
         .anyRequest().authenticated().and().formLogin().permitAll().and().logout().permitAll();
     }
 }
